@@ -1,30 +1,41 @@
-const AUTOS_URL = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
+const CAR_URL = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
 
-let autosArray = [];
+let carsArray = [];
 console.log()
 
-fetch(AUTOS_URL)
+fetch(CAR_URL)
     .then(function (response) {
         console.log()
         return response.json()
     })
     .then(function (data) {
-        autosArray = data.products;
-        console.log(autosArray);
-        let listaProductos = document.getElementById('lista-productos');
+        carsArray = data.products;
+        console.log(carsArray);
+        let productsList = document.getElementById('products-list');
+
+        let pProducts = document.getElementById('p-products');
+        pProducts.innerHTML +=' ' + data.catName;
 
         let htmlContentToAppend = '';
-        for (let products of autosArray) {
+        for (let products of carsArray) {
             console.log(products);
             htmlContentToAppend += `
-            <div class="products">
-            <img src="${products.image}" class="products-img">
-            <h2>${products.name + products.currency + products.cost}</h2>
-            <p>${products.description}</p>
-            <p>${products.soldCount}
-            </div>
+            <div onclick="setCatID(${products.id})" class="list-group-item list-group-item-action cursor-active">
+             <div class="products row">
+               <div class="col-3">
+                   <img src="${products.image}" class="img-thumbnail">
+               </div>
+               <div class="col">
+                   <div class="d-flex w-100 justify-content-between">
+                      <h4 class="mb-1">${products.name} - ${products.currency} ${products.cost}</h4>
+                      <small class="text-muted">${products.soldCount} vendidos </small>
+                   </div>
+                   <p class="mb-1">${products.description}</p>
+               </div>
+             </div>
+            </div> 
             `;
         }
-        listaProductos.innerHTML += htmlContentToAppend;
+        productsList.innerHTML += htmlContentToAppend;
 
     });
