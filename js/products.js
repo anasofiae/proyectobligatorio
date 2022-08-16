@@ -1,6 +1,6 @@
 const CAR_URL = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
 
-let carsArray = [];
+let productsArray = [];
 console.log()
 
 fetch(CAR_URL)
@@ -9,15 +9,15 @@ fetch(CAR_URL)
         return response.json()
     })
     .then(function (data) {
-        carsArray = data.products;
-        console.log(carsArray);
+        productsArray = data.products;
+        console.log(productsArray);
         let productsList = document.getElementById('products-list');
 
         let pProducts = document.getElementById('p-products');
         pProducts.innerHTML +=' ' + data.catName;
 
         let htmlContentToAppend = '';
-        for (let products of carsArray) {
+        for (let products of productsArray) {
             console.log(products);
             htmlContentToAppend += `
             <div onclick="setCatID(${products.id})" class="list-group-item list-group-item-action cursor-active">

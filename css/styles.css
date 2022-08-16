@@ -188,3 +188,42 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+/* login */
+
+.login-form img{
+  width: 25%;
+}
+
+.login-form h3{
+  font-weight: bold;
+  margin: 20px 0;
+}
+.login-form input{
+     display: block;
+     margin: auto;
+     padding: 6px 10px;
+     width: 25%;
+     font-size: 14px;
+     border: solid 0.75px lightgrey;
+     border-radius: 5px;
+}
+
+.login-form label{
+display: block;
+margin-top: 10px;
+}
+
+.login-button {
+  margin: 30px;
+  padding:10px 20px;
+  background-color: #0087F7;
+  color: white;
+  font-size: 18px;
+  border-radius: 5px;
+  border: none;
+}
+
+.login-button:hover{
+  background-color: #005397;
+}
