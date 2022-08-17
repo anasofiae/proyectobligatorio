@@ -189,17 +189,17 @@ a.custom-card:hover {
   color: orange;
 }
 
-/* login */
+/* login page */
 
-.login-form img{
+#login-form img{
   width: 25%;
 }
 
-.login-form h3{
+#login-form h3{
   font-weight: bold;
   margin: 20px 0;
 }
-.login-form input{
+#login-form input{
      display: block;
      margin: auto;
      padding: 6px 10px;
@@ -209,13 +209,13 @@ a.custom-card:hover {
      border-radius: 5px;
 }
 
-.login-form label{
+#login-form label{
 display: block;
 margin-top: 10px;
 }
 
 .login-button {
-  margin: 30px;
+  margin: 10px;
   padding:10px 20px;
   background-color: #0087F7;
   color: white;
@@ -226,4 +226,12 @@ margin-top: 10px;
 
 .login-button:hover{
   background-color: #005397;
+}
+
+#login-form p{
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: red;
+  font-size: 12px;
 }
