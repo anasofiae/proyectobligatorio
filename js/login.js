@@ -9,13 +9,13 @@ document.getElementById("login-form").addEventListener('submit', function (event
         emailM.innerHTML = 'Ingresa tu email';
     }
 
-    if (passwordText.length === 0) {
+    else if (passwordText.length === 0) {
         event.preventDefault();
 
         let passwordM = document.getElementById('password-message');
         passwordM.innerHTML = 'Ingresa tu contraseña';
     } else {
         event.preventDefault();
-        window.location.href = 'index.html';
+        window.location.href = 'home.html';
     }
 });
