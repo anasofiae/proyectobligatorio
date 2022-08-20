@@ -5,6 +5,8 @@ document.getElementById("login-form").addEventListener('submit', function (event
     if (emailText.length === 0) {
         event.preventDefault();
 
+        document.getElementById('email').style.borderColor = "red";
+        
         let emailM = document.getElementById('email-message');
         emailM.innerHTML = 'Ingresa tu email';
     }
@@ -12,6 +14,8 @@ document.getElementById("login-form").addEventListener('submit', function (event
     else if (passwordText.length === 0) {
         event.preventDefault();
 
+        document.getElementById('password').style.borderColor = "red";
+        
         let passwordM = document.getElementById('password-message');
         passwordM.innerHTML = 'Ingresa tu contraseña';
     } else {

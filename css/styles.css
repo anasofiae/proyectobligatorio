@@ -191,11 +191,11 @@ a.custom-card:hover {
 
 /* login page */
 
-#login-form img{
+.container img{
   width: 25%;
 }
 
-#login-form h3{
+.container h3{
   font-weight: bold;
   margin: 20px 0;
 }
