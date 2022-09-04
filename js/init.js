@@ -39,3 +39,9 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+// Show email account
+let showEmail = localStorage.getItem('userEmail');
+let userAccountLink =  `<a class="nav-link" href="#" >${showEmail}</a>`;
+
+document.getElementById('user-account').innerHTML += userAccountLink;

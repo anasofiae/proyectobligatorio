@@ -236,3 +236,10 @@ a.custom-card:hover {
   color: red;
   font-size: 12px;
 }
+
+#search {
+margin: 8px 0px;
+}
+.filtro{
+  display: none;
+}

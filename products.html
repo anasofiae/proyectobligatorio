@@ -30,7 +30,7 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" id="user-account">
           </li>
         </ul>
       </div>
@@ -41,6 +41,45 @@
          <h2>Productos</h2>
          <p class="lead" id="p-products">Verás aquí todos los productos de la categoría</p>
     </div>
+    <div class="container">
+      <div class="row">
+        <div class="col text-end">
+          <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+            <input type="radio" class="btn-check" name="options" id="sortAscPrice">
+            <label class="btn btn-light" for="sortAscPrice"><i class="fas fa-sort-amount-down mr-1"></i>$</label>
+            <input type="radio" class="btn-check" name="options" id="sortDescPrice">
+            <label class="btn btn-light" for="sortDescPrice"><i class="fas fa-sort-amount-up mr-1"></i>$</label>
+            <input type="radio" class="btn-check" name="options" id="sortRel" checked>
+            <label class="btn btn-light" for="sortRel"><i class="fas fa-sort-amount-down mr-1"></i>Rel.</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+          <div class="row container p-0 m-0">
+            <div class="col">
+              <p class="font-weight-normal text-end my-2">Precio</p>
+            </div>
+            <div class="col">
+              <input class="form-control" type="number" placeholder="min." id="filterPriceMin">
+            </div>
+            <div class="col">
+              <input class="form-control" type="number" placeholder="máx." id="filterPriceMax">
+            </div>
+            <div class="col-3 p-0">
+              <div class="btn-group" role="group">
+                <button class="btn btn-light btn-block" id="filterPrice">Filtrar</button>
+                <button class="btn btn-link btn-sm" id="clearFilterPrice">Limpiar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+          <input type="search" name="q" placeholder="Buscar" id="search" class="form-control ">
+        </div>
+      </div>
     <div id="products-list"></div>
   </main>
   <footer class="text-muted">

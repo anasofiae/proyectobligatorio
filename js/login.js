@@ -15,5 +15,6 @@ document.getElementById("login-form").addEventListener('submit', function (event
     } else {
         event.preventDefault();
         window.location.href = 'home.html';
+        localStorage.setItem('userEmail', emailText);
     }
 });
