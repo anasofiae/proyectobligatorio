@@ -107,14 +107,14 @@ document.getElementById("filterPrice").addEventListener("click", function () {
     minPrice = document.getElementById("filterPriceMin").value;
     maxPrice = document.getElementById("filterPriceMax").value;
 
-    if ((minPrice != undefined) && (minPrice != "") && (parseInt(minPrice)) >= 0) {
+    if ((minPrice != "") && (parseInt(minPrice)) >= 0) {
         minPrice = parseInt(minPrice);
     }
     else {
         minPrice = undefined;
     }
 
-    if ((maxPrice != undefined) && (maxPrice != "") && (parseInt(maxPrice)) >= 0) {
+    if ((maxPrice != "") && (parseInt(maxPrice)) >= 0) {
         maxPrice = parseInt(maxPrice);
     }
     else {
