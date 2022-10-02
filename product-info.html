@@ -30,7 +30,15 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item" id="user-account">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdown">
+              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><a class="dropdown-item" href="index.html" id="logout">Cerrar sesión</a></li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -38,8 +46,41 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div class="row my-4 align-items-center">
+        <div class="col">
+          <div id="carouselFade" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner" id="div-images">
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselFade" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselFade" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+        <div id="product-info" class="col"></div>
+      </div>
+      <h5 class="border-top py-3">Comentarios</h5>
+      <div id="div-comments" class="list-group"></div>
+      <h5 class="border-top py-3">Comentar</h5>
+      <form>
+        <label for="opinion" class="d-block">Tú opinión:</label>
+        <textarea id="opinion" class="d-block my-3 form-control w-50"></textarea>
+        <label id="score" class="d-block">Tú puntuación</label>
+        <select name="score" id="list-score" class="d-block form-select w-25 my-3">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <button type="button" class="d-block btn btn-primary mb-4" id="add-comment">Enviar</button>
+      </form>
+      <h5 class="border-top pt-3">Productos relacionados</h5>
+      <div id="related-products" class="list-group list-group-horizontal justify-content-evenly p-4 border-bottom">
       </div>
     </div>
   </main>

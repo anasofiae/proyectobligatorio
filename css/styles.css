@@ -186,7 +186,7 @@ a.custom-card:hover {
 }
 
 .checked {
-  color: orange;
+  color: orange!important;
 }
 
 /* login page */
@@ -237,9 +237,20 @@ a.custom-card:hover {
   font-size: 12px;
 }
 
+/* Products page*/
 #search {
 margin: 8px 0px;
 }
 .filtro{
   display: none;
+}
+
+/*Product info page*/
+
+#div-images img, #related-products img{
+  width: 250px;
+}
+
+.fa-star{
+  color:lightgray;
 }

@@ -42,6 +42,13 @@ let getJSONData = function(url){
 
 // Show email account
 let showEmail = localStorage.getItem('userEmail');
-let userAccountLink =  `<a class="nav-link" href="#" >${showEmail}</a>`;
+let userAccountLink =  `${showEmail}`;
 
-document.getElementById('user-account').innerHTML += userAccountLink;
+document.getElementById('navbarDarkDropdown').innerHTML += userAccountLink;
+
+// Log out
+
+document.getElementById("logout").addEventListener('click', function(e){
+  localStorage.removeItem('userEmail');
+})
+

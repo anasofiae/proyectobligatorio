@@ -32,6 +32,12 @@ function sortProducts(order, array) {
     return result;
 }
 
+// set item local-storage
+function setProductId(id) {
+    localStorage.setItem("productID", id);
+    window.location = "product-info.html"
+}
+
 //Function that shows the products 
 function showProducts() {
     let htmlContentToAppend = '';
@@ -40,7 +46,7 @@ function showProducts() {
             ((maxPrice == undefined) || (maxPrice != undefined && parseInt(products.cost) <= maxPrice))) {
 
             htmlContentToAppend += `
-        <div onclick="setCatID(${products.id})"  class="list-group-item list-group-item-action cursor-active div-products">
+        <div onclick="setProductId(${products.id})"  class="list-group-item list-group-item-action cursor-active div-products">
          <div class="products row">
            <div class="col-3">
                <img src="${products.image}" class="img-thumbnail">
@@ -140,7 +146,7 @@ document.getElementById("search").addEventListener("keyup", e => {
 
 
     if (e.target.matches("#search")){
-                
+                     
                 document.querySelectorAll(".div-products").forEach(product =>{
 
                     product.textContent.toLowerCase().includes(e.target.value.toLowerCase())
