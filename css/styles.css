@@ -254,3 +254,19 @@ margin: 8px 0px;
 .fa-star{
   color:lightgray;
 }
+
+.article-image{
+  width: 80px;
+}
+
+.input-count{
+  text-align: center;
+  width: 60px;
+  padding:4px;
+  border:solid 1px lightgrey;
+  border-radius: 3px;
+}
+
+fieldset div{
+  margin: 10px 0px;
+}

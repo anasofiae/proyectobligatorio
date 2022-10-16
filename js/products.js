@@ -144,7 +144,6 @@ document.getElementById("clearFilterPrice").addEventListener("click", function (
 //Search
 document.getElementById("search").addEventListener("keyup", e => {
 
-
     if (e.target.matches("#search")){
                      
                 document.querySelectorAll(".div-products").forEach(product =>{

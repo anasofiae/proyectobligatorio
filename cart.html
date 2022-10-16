@@ -44,10 +44,50 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <div class="container pt-5">
+      <h2 class="text-center py-3">Carrito de compras</h2>
+      <div>
+        <h4 class="pb-3">Artículos a comprar</h4>
+        <table class="table">
+          <thead class="border-bottom pb-2">
+            <th scope="col"></th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Costo</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Subtotal</th>
+          </thead>
+          <tbody id="table-body">
+          </tbody>
+        </table>
       </div>
+      <form class="border-bottom pb-3">
+        <fieldset>
+          <legend>Tipo de envío</legend>
+          <div>
+            <input type="radio" id="premium" name="shippingMethod" value="premium" checked>
+            <label for="premium">Premium 2 a 5 días (15%)</label>
+          </div>
+          <div>
+            <input type="radio" id="express" name="shippingMethod" value="express">
+            <label for="express">Express 5 a 8 días (7%)</label>
+          </div>
+          <div>
+            <input type="radio" id="standard" name="shippingMethod" value="standard">
+            <label for="standard">Standard 12 a 15 días (5%)</label>
+          </div>
+        </fieldset>
+        <legend>Dirección de envío</legend>
+        <div class="d-inline-block me-3 w-50">
+          <label for="street-address" class="d-block">Calle</label>
+          <input type="text" name="street-address" id="street-address" class="form-control" required>
+        </div>
+        <div class="d-inline-block mb-3">
+          <label for="door-number" class="d-block">Número</label>
+          <input type="text" name="door-number" id="door-number" class="form-control" required>
+        </div>
+        <label for="corner-address" class="d-block">Esquina</label>
+        <input type="text" name="corner-address" id="corner-address" class="form-control w-50">
+      </form>
     </div>
   </main>
   <footer class="text-muted">

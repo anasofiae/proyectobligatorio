@@ -1,18 +1,19 @@
 const URL_PRODUCT_INFO = `https://japceibal.github.io/emercado-api/products/${localStorage.getItem("productID")}.json`;
 const COMMENTS_URL = `https://japceibal.github.io/emercado-api/products_comments/${localStorage.getItem("productID")}.json`;
 
+// Set product ID
 function setProductId(id) {
     localStorage.setItem("productID", id);
     window.location = "product-info.html"
 }
 
 // add class active 
-
 function addClassActive() {
     let firstimg = document.querySelector(".carousel-item");
     firstimg.classList.add("active");
 }
 
+// Products info
 fetch(URL_PRODUCT_INFO)
     .then(function (response) {
         console.log(response)
@@ -32,7 +33,6 @@ fetch(URL_PRODUCT_INFO)
         <p>${product.category}</p>
         <h5 class="fw-bold">Cantidad de vendidos</h5>
         <p>${product.soldCount}</p> 
-        <h5 class="fw-bold">Imagenes ilustrativas</h5>
         `;
         document.getElementById("product-info").innerHTML += htmlContentToAppend;
 
@@ -58,7 +58,6 @@ fetch(URL_PRODUCT_INFO)
 
 
 // comment section    
-
 let comments = [];
 let stars = [];
 
@@ -108,6 +107,4 @@ fetch(COMMENTS_URL)
     });
 
 //add new comment
-
-// add class active
 
