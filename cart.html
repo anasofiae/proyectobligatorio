@@ -55,16 +55,17 @@
             <th scope="col">Costo</th>
             <th scope="col">Cantidad</th>
             <th scope="col">Subtotal</th>
+            <th scope="col"></th>
           </thead>
           <tbody id="table-body">
           </tbody>
         </table>
       </div>
-      <form class="border-bottom pb-3">
-        <fieldset>
+      <form class="border-bottom pb-3" id="pay-form" novalidate>
+        <fieldset id="form-shipping-cost" onclick="showCostList()">
           <legend>Tipo de envío</legend>
           <div>
-            <input type="radio" id="premium" name="shippingMethod" value="premium" checked>
+            <input type="radio" id="premium" name="shippingMethod" value="premium">
             <label for="premium">Premium 2 a 5 días (15%)</label>
           </div>
           <div>
@@ -72,24 +73,91 @@
             <label for="express">Express 5 a 8 días (7%)</label>
           </div>
           <div>
-            <input type="radio" id="standard" name="shippingMethod" value="standard">
+            <input type="radio" id="standard" name="shippingMethod" value="standard" checked>
             <label for="standard">Standard 12 a 15 días (5%)</label>
           </div>
         </fieldset>
         <legend>Dirección de envío</legend>
         <div class="d-inline-block me-3 w-50">
           <label for="street-address" class="d-block">Calle</label>
-          <input type="text" name="street-address" id="street-address" class="form-control" required>
+          <input type="text" name="street" id="street-address" class="form-control" required>
+          <p class="error-msg" id="street-error"></p>
         </div>
         <div class="d-inline-block mb-3">
           <label for="door-number" class="d-block">Número</label>
-          <input type="text" name="door-number" id="door-number" class="form-control" required>
+          <input type="text" name="number" id="door-number" class="form-control" required>
+          <p class="error-msg" id="number-error"></p>
         </div>
         <label for="corner-address" class="d-block">Esquina</label>
-        <input type="text" name="corner-address" id="corner-address" class="form-control w-50">
+        <input type="text" name="corner" id="corner-address" class="form-control w-50" required>
+        <p class="error-msg" id="corner-error"></p>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Forma de pago</h5>
+              </div>
+              <div class="modal-body">
+                <fieldset id="pay-method">
+                  <div class="d-block">
+                    <input type="radio" id="credit" name="payMethod" value="credit-card">
+                    <label for="credit">Tarjeta de crédito</label>
+                  </div>
+                  <div id="div-credit">
+                    <div class="d-inline-block">
+                      <label for="card-number" class="d-block">Número de tarjeta</label>
+                      <input type="text" id="card-number" name="card-number" required>
+                    </div>
+                    <div class="d-inline-block  ms-3">
+                      <label for="card-code" class="d-block">Código de seg.</label>
+                      <input type="text" class="w-50" id="card-code" name="card-code" required>
+                    </div>
+                    <label for="card-expiration-date" class="d-block">Vencimiento (MM/AA)</label>
+                    <input type="text" id="card-expiration-date" name="card-expiration-date" required>
+                  </div>
+                  <div class="border-top mt-2 pt-4" id="div-transfer">
+                    <input type="radio" id="transfer" name="payMethod" value="bank-transfer">
+                    <label for="transfer">Transferencia bancaria</label>
+                    <label for="bank-account-number" class="d-block pt-3">Número de cuenta</label>
+                    <input type="text" id="bank-account-number" name="bank-account-number" required>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="select-method" data-bs-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </form>
+      <div class="list-group my-3" id="div-cost">
+        <h4>Costos</h4>
+        <div class="list-group-item">
+          <p class="d-inline-block">Subtotal</p>
+          <p class="float-end" id="general-subtotal"></p>
+          <small class="d-block">Costo unitario del producto por cantidad</small>
+        </div>
+        <div class="list-group-item">
+          <p class="d-inline-block">Costo de envío</p>
+          <p class="float-end" id="shipping-cost"></p>
+          <small class="d-block">Según el tipo de envío</small>
+        </div>
+        <div class="list-group-item">
+          <p class="d-inline-block">Total</p>
+          <p class="float-end" id="total-cost"></p>
+        </div>
+      </div>
+      <!-- Button trigger modal -->
+      <h4>Forma de pago</h4>
+      <p id="pay-method-selected" class="d-inline">No ha seleccionado</p>
+      <a class="d-inline" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Seleccionar</a>
+      <p id="pay-method-data" class="d-block error-msg"></p>
+      <button type="submit" class="btn btn-primary d-block w-100 mt-5 py-2" form="pay-form">Finalizar compra</button>
     </div>
   </main>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -100,6 +168,10 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
+  <div class="alert alert-success alert-dismissible fade" role="alert" id="alert-success">
+    <p>¡Ha comprado con éxito!</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -108,6 +180,7 @@
       <div></div>
     </div>
   </div>
+  <script src="https://kit.fontawesome.com/511d344839.js" crossorigin="anonymous"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
