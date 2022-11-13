@@ -158,16 +158,10 @@ formCheckout.addEventListener('submit', e => {
     }
 
     for (let input of inputsCredit) {
-        if (radioCredit.checked && input.validity.valueMissing) {
+        if ((radioCredit.checked && input.validity.valueMissing) || (radioTransfer.checked && inputTransfer.validity.valueMissing)) {
             valid = false;
             document.getElementById("pay-method-data").textContent = "Debe ingresar los datos del pago.";
         }
-    }
-
-    if (radioTransfer.checked && inputTransfer.validity.valueMissing) {
-        document.getElementById("pay-method-data").textContent = "Debe ingresar los datos del pago.";
-        valid = false;
-
     }
 
     if (valid == false) {

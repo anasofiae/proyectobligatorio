@@ -300,3 +300,11 @@ input:valid {
   border: lightgray solid 1px;
 }
 
+/* Image profile*/
+#profile-image{
+  text-align: end;
+  background-color: #005397;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
