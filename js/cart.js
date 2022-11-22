@@ -17,6 +17,8 @@ let inputTransfer = document.getElementById("bank-account-number");
 function showArticles() {
     for (let article of articlesArray) {
         subtotalCost = article.count * article.unitCost;
+        localStorage.setItem('subtotalCost', subtotalCost);
+
         htmlContentToAppend = `
         <tr class="border-bottom align-middle p-2">
           <td><img src="${article.image}" class="article-image"></td>
@@ -43,7 +45,7 @@ fetch(CART_URL)
         // Show All Costs
         showCostList();
     });
-
+// Change the subtotal price of the articles
 function changeArticleSubtotal() {
     let inputCount = document.getElementById("input-count")
 
@@ -54,13 +56,14 @@ function changeArticleSubtotal() {
         localStorage.setItem('subtotalCost', subtotalCost);
     }
 }
-
+// Cost list prices
 function showCostList() {
     let premium = document.getElementById("premium");
     let express = document.getElementById("express");
     let standard = document.getElementById("standard");
-    
+
     subtotalCost = JSON.parse(localStorage.getItem("subtotalCost"));
+
     // Show Subtotal cost of all products
     generalSubtotal.textContent = `USD ${subtotalCost}`;
     // Show shipping Cost
@@ -99,11 +102,9 @@ document.getElementById("pay-method").addEventListener('change', function () {
 });
 
 //Success alert
-
 function showAlertSuccess() {
     document.getElementById("alert-success").classList.add("show");
 }
-
 // form checkput validation
 let formCheckout = document.forms['pay-form'];
 
@@ -119,7 +120,6 @@ formCheckout.addEventListener('submit', e => {
         formCheckout.street.style.border = "1px solid red";
         document.getElementById("street-error").textContent = "Ingresa una calle";
         valid = false;
-
     } else {
         formCheckout.street.style.border = "1px solid lightgrey";
         document.getElementById("street-error").textContent = "";
@@ -129,7 +129,6 @@ formCheckout.addEventListener('submit', e => {
         formCheckout.number.style.border = "1px solid red";
         document.getElementById("number-error").textContent = "Ingresa un número";
         valid = false;
-
     } else {
         formCheckout.number.style.border = "1px solid lightgrey";
         document.getElementById("number-error").textContent = "";
@@ -139,7 +138,6 @@ formCheckout.addEventListener('submit', e => {
         formCheckout.corner.style.border = "1px solid red";
         document.getElementById("corner-error").textContent = "Ingresa una esquina";
         valid = false;
-
     } else {
         formCheckout.corner.style.border = "1px solid lightgrey";
         document.getElementById("corner-error").textContent = "";
@@ -148,13 +146,11 @@ formCheckout.addEventListener('submit', e => {
     if (validityStateCount.rangeUnderflow) {
         formCheckout.articleCount.style.border = "1px solid red";
         valid = false;
-
     }
     // Pay method
     if (!radioCredit.checked && !radioTransfer.checked) {
         pPayMethod.style.color = "red";
         valid = false;
-
     }
 
     for (let input of inputsCredit) {
@@ -163,7 +159,7 @@ formCheckout.addEventListener('submit', e => {
             document.getElementById("pay-method-data").textContent = "Debe ingresar los datos del pago.";
         }
     }
-
+    // VALIDATE
     if (valid == false) {
         e.preventDefault();
     } else {
@@ -174,8 +170,16 @@ formCheckout.addEventListener('submit', e => {
 });
 
 //remove article
-function removeArticle(){
- document.getElementById("table-body").innerHTML = "";
- //subtotalCost = 0;
- //generalSubtotal.textContent = `USD ${subtotalCost}`;
+function removeArticle() {
+    document.getElementById("table-body").innerHTML = "";
+    localStorage.removeItem('subtotalCost');
+    // Show general subtotal
+    subtotalCost = 0;
+    generalSubtotal.textContent = `USD ${subtotalCost}`;
+    // Show shipping cost
+    shippingCost = 0;
+    pShippingCost.textContent = `USD ${shippingCost}`;
+    // Show Total  Cost   
+    totalCost = shippingCost + subtotalCost;
+    document.getElementById("total-cost").textContent = `USD ${totalCost}`;
 }

@@ -8,8 +8,7 @@ let currentSortOrder = undefined;
 let minPrice = undefined;
 let maxPrice = undefined;
 
-// Sort
-
+// Sort products
 function sortProducts(order, array) {
     let result = [];
     if (order === ASC_BY_PRICE) {
@@ -24,7 +23,6 @@ function sortProducts(order, array) {
         result = array.sort(function (a, b) {
             let aCount = parseInt(a.soldCount);
             let bCount = parseInt(b.soldCount);
-
             return bCount - aCount
         });
     }
@@ -69,13 +67,10 @@ function showProducts() {
 // Order the products
 function showNewOrder(sortOrder, productsList) {
     currentSortOrder = sortOrder;
-
     if (productsList != undefined) {
         productsArray = productsList;
     }
-
     productsArray = sortProducts(currentSortOrder, productsArray);
-
     //Muestro las categorías ordenadas
     showProducts();
 }
@@ -95,23 +90,22 @@ fetch(PRODUCT_API_URL)
     });
 
 // Sort events
-document.getElementById("sortAscPrice").addEventListener("click", function () {
+document.getElementById("sort-asc-price").addEventListener("click", function () {
     showNewOrder(ASC_BY_PRICE);
 });
 
-document.getElementById("sortDescPrice").addEventListener("click", function () {
+document.getElementById("sort-desc-price").addEventListener("click", function () {
     showNewOrder(DESC_BY_PRICE);
 });
 
-document.getElementById("sortRel").addEventListener("click", function () {
+document.getElementById("sort-rel").addEventListener("click", function () {
     showNewOrder(REL_ORDER);
 });
 
 // filter price
-
-document.getElementById("filterPrice").addEventListener("click", function () {
-    minPrice = document.getElementById("filterPriceMin").value;
-    maxPrice = document.getElementById("filterPriceMax").value;
+document.getElementById("filter-price").addEventListener("click", function () {
+    minPrice = document.getElementById("filter-price-min").value;
+    maxPrice = document.getElementById("filter-price-max").value;
 
     if ((minPrice != "") && (parseInt(minPrice)) >= 0) {
         minPrice = parseInt(minPrice);
@@ -131,9 +125,9 @@ document.getElementById("filterPrice").addEventListener("click", function () {
 
 // Clean filters
 
-document.getElementById("clearFilterPrice").addEventListener("click", function () {
-    document.getElementById("filterPriceMin").value = "";
-    document.getElementById("filterPriceMax").value = "";
+document.getElementById("clear-filter-price").addEventListener("click", function () {
+    document.getElementById("filter-price-min").value = "";
+    document.getElementById("filter-price-max").value = "";
 
     minPrice = undefined;
     maxPrice = undefined;

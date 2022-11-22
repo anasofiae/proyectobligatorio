@@ -18,7 +18,7 @@ if (localStorage.getItem('imageProfile') != null){
     imgProfile.src = 'img/img_perfil.png';
 };
 
-// image file
+// Image file
 inputImg.addEventListener('change', () =>{
 
     let fileread = new FileReader();

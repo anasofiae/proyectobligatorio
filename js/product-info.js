@@ -76,7 +76,7 @@ function paintStar(score) {
         }
     }
 }
-
+// Comments
 fetch(COMMENTS_URL)
     .then(function (response) {
         console.log(response)
