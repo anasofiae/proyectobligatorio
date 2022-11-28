@@ -62,20 +62,28 @@ let comments = [];
 let stars = [];
 
 function paintStar(score) {
-    let star1 = document.getElementById("star1");
-    let star2 = document.getElementById("star2");
-    let star3 = document.getElementById("star3");
-    let star4 = document.getElementById("star4");
-    let star5 = document.getElementById("star5");
-    stars = [star1, star2, star3, star4, star5];
-    console.log(stars);
-
-    for (let i = 0; i < 5; i++) {
+   /*stars = document.querySelectorAll(".fa-star");
+   console.log(stars);
+   for (let i = 0; i < 5; i++) {
         if (i < score) {
             stars[i].classList.add("checked");
         }
+    }*/
+}
+
+function addStars() {  
+    for (let i = 0; i < 5; i++) {
+        let star = document.createElement('span');
+       
+        document.getElementsByClassName("div-stars").appendChild(star);
+        star.classList.add("fa", "fa-star", "d-inline")
+
+        if (i < 5) {
+            star.classList.add("checked");   
+        }
     }
 }
+
 // Comments
 fetch(COMMENTS_URL)
     .then(function (response) {
@@ -87,21 +95,20 @@ fetch(COMMENTS_URL)
         let commentsContentToAppend = '';
 
         for (let comment of comments) {
-            commentsContentToAppend += `
-                <div class="list-group-item border" id="comment">
+            let commentDiv= document.createElement("div");
+            commentDiv.setAttribute("class","list-group-item border");
+            commentDiv.setAttribute("id","comment");
+            
+            commentsContentToAppend = `
                   <div>
                     <p class="fw-bold d-inline">${comment.user}</p>
                     <p class="d-inline"> - ${comment.dateTime} - </p>
-                    <span class="fa fa-star d-inline" id="star1"></span>
-                    <span class="fa fa-star d-inline" id="star2"></span>
-                    <span class="fa fa-star d-inline" id="star3"></span>
-                    <span class="fa fa-star d-inline" id="star4"></span>
-                    <span class="fa fa-star d-inline" id="star5"></span>
-                    <p class="d-inline"> - ${comment.score}</p>
+                    <div class="div-stars"></div>
                  </div>
                   <small>${comment.description}</small>
-                </div>`;
-            document.getElementById("div-comments").innerHTML = commentsContentToAppend;
+               `;
+                commentDiv.innerHTML = commentsContentToAppend;
+                document.getElementById("div-comments").appendChild(commentDiv);        
         }
 
     });
